@@ -1,0 +1,403 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bleu: #091729;
+    --rose: #e40034;
+    --blanc: white;
+    --noir: black;
+}
+
+/*****************AFFICHAGE SI PAS DE RESERVATION ********************/
+#container-no {
+    height: 100vh;
+}
+
+#no {
+    font-size: 2rem;
+    color: rgb(253, 253, 253);
+    text-shadow: 1px 1px 1px black;
+}
+
+
+/***************** AFFICHAGE SI RESERVATION *****************/
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#container-page {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 2%;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    color: white;
+    background-image: url("../img/tables.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    /* L'image s'adapte pour couvrir son container */
+}
+
+h4#menu,
+h5 {
+    color: var(--rose);
+}
+
+.content-menu {
+    color: var(--bleu);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+h1,
+h3 {
+    color: white;
+    text-shadow: 1px 1px 1px var(--bleu);
+}
+
+h3 {
+    margin-bottom: 3%;
+}
+
+.fa-solid {
+    margin-top: 3%;
+}
+
+.confirmation-reservation {
+    background-color: var(--rose);
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.confirmation-reservation-p {
+    font-size: 20px;
+}
+
+.validate {
+    margin: 15px 0px;
+}
+
+/********** CONTAINER PRINCIPAL POUR TOUTES LES RESERVATIONS***********/
+#container-reservation {
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+}
+
+.lien {
+    background-color: var(--bleu);
+    border: 1px solid white;
+    border-radius: 10px 1px 10px 1px;
+    font-size: 1.1rem;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+.container-lien {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+/************CONTAINER POUR CHAQUE RESERVATION ****************/
+.reservation {
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 650px;
+    height: 600px;
+    margin: 0 auto;
+    padding: 5%;
+    /* margin-top: 5%; */
+    border-radius: 50px;
+}
+
+/************** DIV DONNEES*******************/
+.donnees {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.donnee {
+    background-color: rgb(231, 4, 57, 0.8);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.donnee:hover {
+    background-color: rgb(196, 2, 47);
+}
+
+.donnee:hover form #valider-jour {
+    background-color: var(--rose);
+}
+
+.donnee form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.donnee form #jour-reservation {
+    border: 2px solid rgb(196, 2, 47);
+    border-radius: 4px;
+    background-color: white;
+}
+
+.donnee form #valider-jour {
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    font-weight: bold;
+    padding: 2.5%;
+    cursor: pointer;
+}
+
+.jour,
+.heure {
+    width: 150px;
+    height: 50px;
+}
+
+.personnes,
+.creneau {
+    width: 140px;
+    height: 50px;
+}
+
+.jour {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.heure {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/************** DIV MENU-JOUR ****************/
+h4 {
+    font-size: 1.6rem;
+}
+
+.title-menu {
+    font-size: 1.3rem;
+}
+
+.menu-jour {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.elements-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sup-reservation {
+    position: absolute;
+    bottom: 20px;
+    width: 36%;
+    height: 30px;
+    background-color: rgb(231, 4, 57);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem;
+}
+
+/*Responsive Tablette*/
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .reservation {
+        width: 550px;
+        height: 550px;
+    }
+
+    .donnees .personnes {
+        font-size: 0.8rem;
+    }
+
+    .jour,
+    .heure {
+        width: 130px;
+        height: 50px;
+    }
+
+    .personnes,
+    .creneau {
+        width: 120px;
+        height: 50px;
+    }
+}
+
+/* Responsive menu de navigation, evenements, galerie + formulaire de contact */
+
+/*Tablette*/
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+
+    header {
+        position: relative;
+    }
+
+    #menu-navigation {
+        gap: 20px;
+    }
+
+    #items-menu .barre {
+        display: none;
+    }
+
+    #items-menu {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #menu-navigation {
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
+
+    #container-encarts {
+        flex-wrap: wrap;
+        width: 75%;
+        gap: 50px;
+    }
+
+    #fleche {
+        bottom: -9%;
+    }
+
+    li .button {
+        width: 550px;
+    }
+
+    li .content {
+        width: 550px;
+    }
+
+    #flex-menu {
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    #evenements {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        gap: 50px;
+    }
+
+    .google-iframe {
+        width: 100%;
+        margin-bottom: 15%;
+    }
+
+    .google-iframe iframe {
+        height: 150%;
+    }
+
+    .contact-container {
+        width: 90%;
+    }
+
+    .formulaire-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    #container-encarts {
+        flex-wrap: wrap;
+        width: 75%;
+        gap: 50px;
+    }
+
+
+    #evenements {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        gap: 50px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .reservation {
+        /* width: 350px;
+        height: 600px; */
+        width: 80%;
+        height: 700px;
+    }
+
+    .donnees {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .jour,
+    .heure,
+    .personnes,
+    .creneau {
+        width: 70%;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .content-menu {
+        font-size: 1.1rem;
+    }
+
+    h4#menu {
+        font-size: 1.7rem;
+    }
+
+    p.content-menu {
+        font-size: 1.2rem;
+    }
+
+    .sup-reservation {
+        width: 50%;
+        background-color: rgb(231, 4, 57);
+        padding: 1.5rem;
+        bottom: 20px;
+    }
+
+    .dessert{
+        margin-bottom: 50px;
+    }
+}
