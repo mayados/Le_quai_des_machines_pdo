@@ -1,6 +1,6 @@
 <?php
 
-/* Fonction de connexion à la base de données */
+/* Fonction de connexion à la base de données restaurant*/
 
 function connexion(){
     try{
@@ -25,5 +25,129 @@ function connexion(){
     }
 
 }
+
+connexion();
+
+/* Récupérer tous les plats */
+
+function findAll(){
+    /* cette variable est égale au return de la fonction connexion() */
+    $pdo = connexion();
+    /* Requête sql pour savoir ce que l'on sélectionne */
+    $sqlQuery = 'SELECT * FROM plat';
+    /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
+    $tousMenus = $pdo->prepare($sqlQuery);
+    $tousMenus->execute();
+    /* Tous les éléments sont stockés dans un tableau */
+    $menus = $tousMenus->fetchAll();
+    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
+            /* Pour chaque produit, on affiche ses informations */
+            foreach ($menus as $menu) {
+                echo "".$menu['id_plat']."   ".$menu['intitule']."<br>";
+                }
+    return $menus;
+
+}
+
+findAll();
+
+
+
+
+function findEntree(){
+    $pdo = connexion();
+    $sqlQuery = 'SELECT intitule FROM plat WHERE id_categorie = 1';
+    /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
+    $tousProduits = $pdo->prepare($sqlQuery);
+    $tousProduits->execute();
+    /* Tous les éléments sont stockés dans un tableau */
+    $products = $tousProduits->fetchAll();
+    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
+            /* Pour chaque produit, on affiche ses informations */
+            foreach ($products as $product) {
+                echo "".$product['intitule']."<br>";
+                }
+}
+
+// findEntree();
+
+function findPlat(){
+    $pdo = connexion();
+    $sqlQuery = 'SELECT intitule FROM plat WHERE id_categorie = 2';
+    /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
+    $tousProduits = $pdo->prepare($sqlQuery);
+    $tousProduits->execute();
+    /* Tous les éléments sont stockés dans un tableau */
+    $products = $tousProduits->fetchAll();
+    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
+            /* Pour chaque produit, on affiche ses informations */
+            foreach ($products as $product) {
+                echo "".$product['intitule']."<br>";
+                }
+}
+
+// findPlat();
+
+function findDessert(){
+    $pdo = connexion();
+    $sqlQuery = 'SELECT intitule FROM plat WHERE id_jour = 1';
+    /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
+    $tousProduits = $pdo->prepare($sqlQuery);
+    $tousProduits->execute();
+    /* Tous les éléments sont stockés dans un tableau */
+    $products = $tousProduits->fetchAll();
+    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
+            /* Pour chaque produit, on affiche ses informations */
+            foreach ($products as $product) {
+                echo "".$product['intitule']."<br>";
+                }
+}
+
+// findDessert();
+
+/* Changer un plat */
+function changePlat($name,$id){
+    $pdo = connexion();
+    $sqlQuery = "UPDATE plat SET intitule='$name' WHERE id_jour = $id AND id_categorie = 2";
+    $plat = $pdo->prepare($sqlQuery);
+    $plat->execute();
+    /* Tous les éléments sont stockés dans un tableau */
+    $platChange = $plat->fetch();
+    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
+            /* Pour chaque produit, on affiche ses informations */
+    echo $platChange;
+}
+
+// changePlat('du bon lard',2);
+
+
+function changeEntree($name,$id){
+    $pdo = connexion();
+    $sqlQuery = "UPDATE plat SET intitule='$name' WHERE id_jour = $id AND id_categorie = 1";
+    $plat = $pdo->prepare($sqlQuery);
+    $plat->execute();
+    /* Tous les éléments sont stockés dans un tableau */
+    $platChange = $plat->fetch();
+    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
+            /* Pour chaque produit, on affiche ses informations */
+    echo $platChange;
+}
+
+changeEntree('Apéricube',1);
+
+
+function changeDessert($name,$id){
+    $pdo = connexion();
+    $sqlQuery = "UPDATE plat SET intitule='$name' WHERE id_jour = $id AND id_categorie = 3";
+    $plat = $pdo->prepare($sqlQuery);
+    $plat->execute();
+    /* Tous les éléments sont stockés dans un tableau */
+    $platChange = $plat->fetch();
+    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
+            /* Pour chaque produit, on affiche ses informations */
+    echo $platChange;
+}
+
+changeDessert('Dame Blanche',1);
 
 ?>
