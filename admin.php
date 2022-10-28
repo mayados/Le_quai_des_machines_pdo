@@ -15,9 +15,9 @@
     // require('functions.php');
     // showMessage();
     ?>
-    <h1>Ajouter un nouveau menu dans la base de données</h1>
+    <h1>Changer menu dans la base de données</h1>
         <section id="formulaire">
-            <form action="traitement.php?action=ajouterProduitBdd" method="post">
+            <form action="traitement.php?action=ajouterMenu" method="post">
                 <p>
                     <label>
                         <p class="label-p">Jour de la semaine :</p>
@@ -44,7 +44,7 @@
                     </label>
                 </p>
                 <p>
-                    <input id="ajouter" type="submit" name="submit" value="Ajouter le menu">
+                    <input id="ajouter" type="submit" name="submit" value="Changer le menu">
                 </p>
             </form>
         </section>
