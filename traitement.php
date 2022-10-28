@@ -1,7 +1,9 @@
 <?php
 /* Permet de démarrer une session sur le serveur pour l'utilisateur courant, ou la récupérer s'il en avait déjà une */
 session_start();
-require "function.php";
+require('functions.php');
+require('db-functions.php');
+connexion();
 /* On a indiqué dans index que le mot clé pour récupérer action s'appelle "action"*/
 $action = $_GET["action"];
 
@@ -77,68 +79,24 @@ switch ($action) {
 
         case "ajouterMenu":
             if (isset($_POST["submit"])) {
-                /* Vérification de l'intégralité des valeurs transmises dans le tableau $_POST en fonction de celles que nous attendons */
-                $nom = filter_input(
-                    INPUT_POST,
-                    "nom",
-                    FILTER_SANITIZE_SPECIAL_CHARS
-                );
-                $prenom = filter_input(
-                    INPUT_POST,
-                    "prenom",
-                    FILTER_SANITIZE_SPECIAL_CHARS
-                );
-                // $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                $telephone = $_POST["telephone"];
-                $nombrePersonne = filter_input(
-                    INPUT_POST,
-                    "nombrePersonne",
-                    FILTER_VALIDATE_INT
-                );
-                $mail = filter_input(INPUT_POST, "mail", FILTER_VALIDATE_EMAIL);
-                $jourReservation = filter_input(
-                    INPUT_POST,
-                    "jour-reservation",
-                    FILTER_SANITIZE_SPECIAL_CHARS
-                );
-                $creneauReservation = filter_input(
-                    INPUT_POST,
-                    "creneau-reservation",
-                    FILTER_SANITIZE_SPECIAL_CHARS
-                );
-                /* Comme les options sont déjà définies, il suffit de lire l'option choisie dans select */
-                $heureReservation = $_POST["creneau-heure"];
     
                 //Nous devons conserver chaque produit renseigné, donc les stocker esession. On décide d'abord de leur organisation au sein de la session
-                if (
-                    $nom &&
-                    $prenom &&
-                    $telephone &&
-                    $nombrePersonne &&
-                    $mail &&
-                    $jourReservation &&
-                    $creneauReservation &&
-                    $heureReservation
-                ) {
-                    $reservation = [
-                        "nom" => $nom,
-                        "prenom" => $prenom,
-                        "telephone" => $telephone,
-                        "nombrePersonne" => $nombrePersonne,
-                        "mail" => $mail,
-                        "jourReservation" => $jourReservation,
-                        "creneauReservation" => $creneauReservation,
-                        "heureReservation" => $heureReservation,
+                if ($jour) {
+                    $menu = [
+                        "jour" => $jour,
+                        "entree" => $prenom,
+                        "plat" => $telephone,
+                        "dessert" => $nombrePersonne,
                     ];
     
                     /* On enregistre le produit en session */
                     /* On appelle le tableau session fournit par php, on y indique un clé "products" */
-                    $_SESSION["reservations"][] = $reservation;
+                    $_SESSION["menus"][] = $menu;
                 }
             }
     
             /* Redirection vers le formulaire, qu'il soit saisi ou non */
-            header("Location:panier.php");
+            header("Location:admin.php");
             break;
 
     case "viderPanier":
