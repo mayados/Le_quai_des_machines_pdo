@@ -49,7 +49,7 @@ function findAll(){
 
 }
 
-findAll();
+// findAll();
 
 
 
@@ -118,7 +118,7 @@ function changePlat($name,$id){
     echo $platChange;
 }
 
-// changePlat('du bon lard',2);
+ changePlat('malicette au saumon',2);
 
 
 function changeEntree($name,$id){
@@ -133,21 +133,43 @@ function changeEntree($name,$id){
     echo $platChange;
 }
 
-changeEntree('Apéricube',1);
+// changeEntree('Apéricube',1);
 
 
 function changeDessert($name,$id){
     $pdo = connexion();
-    $sqlQuery = "UPDATE plat SET intitule='$name' WHERE id_jour = $id AND id_categorie = 3";
+    $sqlQuery = "UPDATE plat SET intitule='$name' WHERE id_jour = :id AND id_categorie = 3";
     $plat = $pdo->prepare($sqlQuery);
-    $plat->execute();
+    $plat->execute([
+        "id" => $id
+    ]);
     /* Tous les éléments sont stockés dans un tableau */
     $platChange = $plat->fetch();
     /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
             /* Pour chaque produit, on affiche ses informations */
-    echo $platChange;
+    return $platChange;
 }
 
-changeDessert('Dame Blanche',1);
+// echo changeDessert('Glace à la fraise',1);
+
+/* Récupérer l'id du jour */
+
+function findIdJour(string $nomJour){
+    $pdo = connexion();
+    /* Pour éviter une attaque par faille, il faut utiliser les doubles points */
+    $sqlQuery = "SELECT id_jour FROM jour WHERE nom_jour = :nomJour";
+    $jour = $pdo->prepare($sqlQuery);
+    /* On dit que nomJour que l'on a ciblé avec les deux point est égal à la variable $nomJour = on exécute uniquement ce qui est attendu dans nomJour */
+    $jour->execute([
+        "nomJour" => $nomJour
+    ]);
+    /* fetch récupère un élément dans un tableau. Il faut donc indiquer l'index recherché. Ici l'index est égal au nom de la column que l'on a select */
+    $idJour = $jour->fetch();
+    
+    return $idJour["id_jour"];
+}
+
+/* On affiche le résultat de la fonction à l'écran */
+echo findIdJour("Samedi");
 
 ?>
