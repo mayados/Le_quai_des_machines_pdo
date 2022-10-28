@@ -54,56 +54,54 @@ function findAll(){
 
 
 
-function findEntree(){
+function findEntree($id){
     $pdo = connexion();
-    $sqlQuery = 'SELECT intitule FROM plat WHERE id_categorie = 1';
+    $sqlQuery = 'SELECT intitule FROM plat WHERE id_categorie = 1 AND id_jour = :id';
     /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
     $tousProduits = $pdo->prepare($sqlQuery);
-    $tousProduits->execute();
+    $tousProduits->execute([
+        "id" => $id
+    ]);
     /* Tous les éléments sont stockés dans un tableau */
-    $products = $tousProduits->fetchAll();
-    /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
-            /* Pour chaque produit, on affiche ses informations */
-            foreach ($products as $product) {
-                echo "".$product['intitule']."<br>";
-                }
+    $products = $tousProduits->fetch();
+    return $products['intitule'];   
 }
 
-// findEntree();
+echo findEntree(1);
 
-function findPlat(){
+function findPlat($id){
     $pdo = connexion();
-    $sqlQuery = 'SELECT intitule FROM plat WHERE id_categorie = 2';
+    $sqlQuery = 'SELECT intitule FROM plat WHERE id_categorie = 2 AND id_jour = :id';
     /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
     $tousProduits = $pdo->prepare($sqlQuery);
-    $tousProduits->execute();
+    $tousProduits->execute([
+        "id" => $id
+    ]);
     /* Tous les éléments sont stockés dans un tableau */
-    $products = $tousProduits->fetchAll();
+    $products = $tousProduits->fetch();
     /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
             /* Pour chaque produit, on affiche ses informations */
-            foreach ($products as $product) {
-                echo "".$product['intitule']."<br>";
-                }
+    return $products['intitule'];        
+
 }
 
-// findPlat();
+// echo findPlat(1);
 
-function findDessert(){
+function findDessert($id){
     $pdo = connexion();
-    $sqlQuery = 'SELECT intitule FROM plat WHERE id_jour = 1';
+    $sqlQuery = 'SELECT intitule FROM plat WHERE id_jour = 1 AND id_jour = :id';
     /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
     $tousProduits = $pdo->prepare($sqlQuery);
-    $tousProduits->execute();
+    $tousProduits->execute([
+        "id" => $id
+    ]);
     /* Tous les éléments sont stockés dans un tableau */
-    $products = $tousProduits->fetchAll();
+    $products = $tousProduits->fetch();
     /* return indique ce qui sera rretourné lorsque l'on appelle la fonction */
-            /* Pour chaque produit, on affiche ses informations */
-            foreach ($products as $product) {
-                echo "".$product['intitule']."<br>";
-                }
+    return $products['intitule'];
 }
 
-// findDessert();
+// echo findDessert(1);
 
 /* Changer un plat */
 function changePlat($name,$id){
@@ -171,5 +169,6 @@ function findIdJour(string $nomJour){
 
 /* On affiche le résultat de la fonction à l'écran */
 echo findIdJour("Samedi");
+
 
 ?>
