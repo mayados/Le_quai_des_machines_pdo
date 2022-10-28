@@ -1,7 +1,7 @@
 <?php
 /* Permet de démarrer une session sur le serveur pour l'utilisateur courant, ou la récupérer s'il en avait déjà une */
 session_start();
-require('functions.php');
+require('function.php');
 require('db-functions.php');
 connexion();
 /* On a indiqué dans index que le mot clé pour récupérer action s'appelle "action"*/
@@ -80,19 +80,19 @@ switch ($action) {
         case "ajouterMenu":
             if (isset($_POST["submit"])) {
     
-                //Nous devons conserver chaque produit renseigné, donc les stocker esession. On décide d'abord de leur organisation au sein de la session
-                if ($jour) {
-                    $menu = [
-                        "jour" => $jour,
-                        "entree" => $prenom,
-                        "plat" => $telephone,
-                        "dessert" => $nombrePersonne,
-                    ];
-    
-                    /* On enregistre le produit en session */
-                    /* On appelle le tableau session fournit par php, on y indique un clé "products" */
-                    $_SESSION["menus"][] = $menu;
-                }
+                $jour = $_POST["jour"];
+                $entree = $_POST["entree"];
+                $plat = $_POST["plat"];
+                $dessert = $_POST["dessert"];
+
+
+                $idDuJour = findIdJour($jour);
+                changeEntree($entree,$idDuJour);
+                changePlat($plat,$idDuJour);
+                changeDessert($dessert,$idDuJour);
+
+
+
             }
     
             /* Redirection vers le formulaire, qu'il soit saisi ou non */
