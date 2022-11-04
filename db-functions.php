@@ -67,7 +67,7 @@ function findEntree($id){
     return $products['intitule'];   
 }
 
-echo findEntree(1);
+// echo findEntree(1);
 
 function findPlat($id){
     $pdo = connexion();
@@ -89,7 +89,7 @@ function findPlat($id){
 
 function findDessert($id){
     $pdo = connexion();
-    $sqlQuery = 'SELECT intitule FROM plat WHERE id_jour = 1 AND id_jour = :id';
+    $sqlQuery = 'SELECT intitule FROM plat WHERE id_categorie = 3 AND id_jour = :id';
     /* nous ajoutons prepare afin de sécuriser les informations, ainsi, on execute uniquement ce qui a été préparé auparavant */
     $tousProduits = $pdo->prepare($sqlQuery);
     $tousProduits->execute([
@@ -116,7 +116,7 @@ function changePlat($name,$id){
     echo $platChange;
 }
 
- changePlat('malicette au saumon',2);
+//  changePlat('malicette au saumon',2);
 
 
 function changeEntree($name,$id){
@@ -168,7 +168,7 @@ function findIdJour(string $nomJour){
 }
 
 /* On affiche le résultat de la fonction à l'écran */
-echo findIdJour("Samedi");
+// echo findIdJour("samedi");
 
 
 ?>
