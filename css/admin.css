@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container-page{
+    height: 100vh;
+    background: linear-gradient(#e66465, #9198e5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+form{
+    background-color: rgba(194, 194, 194, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    border-radius: 20px;
+    display: flex;
+    width: 400px;
+    height: 400px;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.label-p{
+    font-size: 1.2rem;
+}
+
+.form-champ{
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+#ajouter{
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    background-color: rgb(121, 82, 149);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+}
