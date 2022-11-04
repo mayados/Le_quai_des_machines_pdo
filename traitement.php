@@ -80,13 +80,15 @@ switch ($action) {
         case "ajouterMenu":
             if (isset($_POST["submit"])) {
     
+                /* On récupère les valeurs saisies dans le formulaire */
                 $jour = $_POST["jour"];
                 $entree = $_POST["entree"];
                 $plat = $_POST["plat"];
                 $dessert = $_POST["dessert"];
 
-
+                /* Je stocke ce que retourne la fonction avec pour paramètre le jour saisi dans le formulaire */
                 $idDuJour = findIdJour($jour);
+                /* On met en paramètres les valeurs rentrées dans le formulaire, associées à l'identifiant du jour entré */
                 changeEntree($entree,$idDuJour);
                 changePlat($plat,$idDuJour);
                 changeDessert($dessert,$idDuJour);
