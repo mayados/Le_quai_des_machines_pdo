@@ -2,32 +2,33 @@
 
 /* Il faut avoir accès au tableau $_SESSION pour connaître les plats du jour */
 session_start();
+require('db-functions.php');
 
 
 /* Construire les variables pour le menu de la semaine */
-$menu1 = " Pavé de sandre au beurre blanc du Pays Nantais (riz ou pomme de terre)";
-$menu2 = " Chaudrée de palourdes";
-$menu3 = "canard de Challans plongé dans une mare de sauce au muscadet (Accompagnement légumes de saison)";
-$menu4 = " Bardatte aux herbes fraîches sur un fondu de carotte et poireau primeur";
-$menu5 = " Plateau de fruits de mer de l’Atlantique";
-$menu6 = " Saucisse au Muscadet et sa robe de crêpe au sarrasin ";
-$menu7 = " Carré de côtes de porc braisé";
+$menu1 = findPlat(1);
+$menu2 = findPlat(2);
+$menu3 = findPlat(3);
+$menu4 = findPlat(4);
+$menu5 = findPlat(5);
+$menu6 = findPlat(6);
+$menu7 = findPlat(7);
 
-$entree1 = " Salade ou velouté de mâche nantaise";
-$entree2 = " Rillettes au lapin";
-$entree3 = " Grenouilles des marais à la crème";
-$entree4 = " Pâté de foie chaud";
-$entree5 = " Poires tapées au vin";
-$entree6 = " Truite fumée, crème ciboulette";
-$entree7 = " Salade de Langouille";
+$entree1 = findEntree(1);
+$entree2 = findEntree(2);
+$entree3 = findEntree(3);
+$entree4 = findEntree(4);
+$entree5 = findEntree(5);
+$entree6 = findEntree(6);
+$entree7 = findEntree(7);
 
-$dessert1 = " Fondant baulois et fleur de glace Pêche de Vigne";
-$dessert2 = " Fouace perdue aux fruits rouges";
-$dessert3 = " Fouace perdue aux fruits rouges";
-$dessert4 = " Fondue de curé Nantais gratinée et variante de poires";
-$dessert5 = " Tourton du pays nantais et son Curé nantais";
-$dessert6 = " Gâteau nantais et crémeux de yaourt";
-$dessert7 = " Petit beurre sur lit de Confiture de Muroise du Pays Nantais";
+$dessert1 = findDessert(1);
+$dessert2 = findDessert(2);
+$dessert3 = findDessert(3);
+$dessert4 = findDessert(4);
+$dessert5 = findDessert(5);
+$dessert6 = findDessert(6);
+$dessert7 = findDessert(7);
 
 $menuSemaine = 
 [
