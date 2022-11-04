@@ -3,6 +3,8 @@
     session_start();
     require('function.php');
     showMessage();
+    require('db-functions.php');
+connexion();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -45,39 +47,39 @@
                             foreach($_SESSION['reservations'] as $index => $reservation){
                                 switch($reservation['jourReservation']) {
                                     case 'lundi':
-                                        $_SESSION['Entree'] = $_SESSION['menuSemaine'][0]['lundi']['entree'];
-                                        $_SESSION['Plat'] = $_SESSION['menuSemaine'][0]['lundi']['plat'];
-                                        $_SESSION['Dessert'] = $_SESSION['menuSemaine'][0]['lundi']['dessert'];
+                                        $_SESSION['Entree'] = findEntree(1);
+                                        $_SESSION['Plat'] = findPlat(1);
+                                        $_SESSION['Dessert'] = findDessert(1);
                                         break;
                                     case 'mardi':
-                                        $_SESSION['Entree'] = $_SESSION['menuSemaine'][0]['mardi']['entree'];
-                                        $_SESSION['Plat'] = $_SESSION['menuSemaine'][0]['mardi']['plat'];
-                                        $_SESSION['Dessert'] = $_SESSION['menuSemaine'][0]['mardi']['dessert'];
+                                        $_SESSION['Entree'] = findEntree(2);
+                                        $_SESSION['Plat'] = findPlat(2);
+                                        $_SESSION['Dessert'] = findDessert(2);
                                         break;
                                     case 'mercredi':
-                                        $_SESSION['Entree'] = $_SESSION['menuSemaine'][0]['mercredi']['entree'];
-                                        $_SESSION['Plat'] = $_SESSION['menuSemaine'][0]['mercredi']['plat'];
-                                        $_SESSION['Dessert'] = $_SESSION['menuSemaine'][0]['mercredi']['dessert'];
+                                        $_SESSION['Entree'] = findEntree(3);
+                                        $_SESSION['Plat'] = findPlat(3);
+                                        $_SESSION['Dessert'] = findDessert(3);
                                         break;
                                     case 'jeudi':
-                                        $_SESSION['Entree'] = $_SESSION['menuSemaine'][0]['jeudi']['entree'];
-                                        $_SESSION['Plat'] = $_SESSION['menuSemaine'][0]['jeudi']['plat'];
-                                        $_SESSION['Dessert'] = $_SESSION['menuSemaine'][0]['jeudi']['dessert'];
+                                        $_SESSION['Entree'] = findEntree(4);
+                                        $_SESSION['Plat'] = findPlat(4);
+                                        $_SESSION['Dessert'] = findDessert(4);
                                         break;
                                     case 'vendredi':
-                                        $_SESSION['Entree'] = $_SESSION['menuSemaine'][0]['vendredi']['entree'];
-                                        $_SESSION['Plat'] = $_SESSION['menuSemaine'][0]['vendredi']['plat'];
-                                        $_SESSION['Dessert'] = $_SESSION['menuSemaine'][0]['vendredi']['dessert'];
+                                        $_SESSION['Entree'] = findEntree(5);
+                                        $_SESSION['Plat'] = findPlat(5);
+                                        $_SESSION['Dessert'] = findDessert(5);
                                         break;
                                     case 'samedi':
-                                        $_SESSION['Entree'] = $_SESSION['menuSemaine'][0]['samedi']['entree'];
-                                        $_SESSION['Plat'] = $_SESSION['menuSemaine'][0]['samedi']['plat'];
-                                        $_SESSION['Dessert'] = $_SESSION['menuSemaine'][0]['samedi']['dessert'];
+                                        $_SESSION['Entree'] = findEntree(6);
+                                        $_SESSION['Plat'] = findPlat(6);
+                                        $_SESSION['Dessert'] = findDessert(6);
                                         break;
                                     case 'dimanche':
-                                        $_SESSION['Entree'] = $_SESSION['menuSemaine'][0]['dimanche']['entree'];
-                                        $_SESSION['Plat'] = $_SESSION['menuSemaine'][0]['dimanche']['plat'];
-                                        $_SESSION['Dessert'] = $_SESSION['menuSemaine'][0]['dimanche']['dessert'];
+                                        $_SESSION['Entree'] = findEntree(7);
+                                        $_SESSION['Plat'] = findPlat(7);
+                                        $_SESSION['Dessert'] = findDessert(7);
                                         break;
                                 }
 
